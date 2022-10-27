@@ -355,12 +355,19 @@ public class Payment : CoffeeShop{
     }
     
 }
+
+
+
+
 public class Tea : Beverage{
     private string tea_type;
     private int price = 0;
     
     public void setPrice(int n){
         price = n;
+    }
+    public void setPrice(int n, int nr_doses_sugar){
+        price = n + nr_doses_sugar;
     }
     
     public int getPrice(){
@@ -380,6 +387,41 @@ public class Tea : Beverage{
     public void choose()
     {
         tea_type = Console.ReadLine();
+        String choice;
+        Console.WriteLine("Do you want some sugar to your coffee?");
+            choice = Console.ReadLine();
+            if(String.Equals("yes",choice)){
+                int nr_doses;
+                Console.WriteLine("How many sugar doses do you want?");
+                nr_doses = Convert.ToInt32(Console.ReadLine());
+        switch(tea_type)
+        {
+            case "black":
+                Console.WriteLine("\nBlack tea to be!");
+                setPrice(20,nr_doses);
+                break;
+            case "green":
+                Console.WriteLine("\nGreen tea to be!");
+                setPrice(20,nr_doses);
+                break;
+            case "fruitty":
+                Console.WriteLine("\nFruitty tea to be!");
+                setPrice(25,nr_doses);
+                break;
+            case "herbal":
+                Console.WriteLine("\nHerbal tea to be!");
+                setPrice(20,nr_doses);
+                break;
+            case "ginger":
+                Console.WriteLine("\nGinger tea to be!");
+                setPrice(25,nr_doses);
+                break;
+            default: 
+                Console.WriteLine("Sorry, we don't serve this tea.");
+                Environment.Exit(0);
+                break;
+        }  
+    }else{
         switch(tea_type)
         {
             case "black":
@@ -407,6 +449,7 @@ public class Tea : Beverage{
                 Environment.Exit(0);
                 break;
         }  
+    }
     }
 }
 public class Coldrinks : Beverage{
